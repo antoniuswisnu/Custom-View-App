@@ -61,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
             myButton.setEnabled(false);
         }
     }
-
-
 }
+
 class MyButton extends AppCompatButton {
 
     Drawable mEnabledButtonImage;
@@ -74,8 +73,6 @@ class MyButton extends AppCompatButton {
         txtColor = ContextCompat.getColor(getContext(), android.R.color.background_light);
         mEnabledButtonImage = (Drawable) ContextCompat.getDrawable(getContext(), R.drawable.bg_button);
         mDisabledButtonImage = (Drawable) ContextCompat.getDrawable(getContext(), R.drawable.bg_button_disable);
-
-
     }
 
     public MyButton(@NonNull Context context) {
@@ -133,17 +130,15 @@ class EditTextClear extends AppCompatEditText{
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
                 if (getCompoundDrawablesRelative()[2] != null){
-                    float clearButtonStartPosition = (getWidth() - getPaddingEnd() - mClearButtonImage.getIntrinsicWidth());
+                    float mClearButtonStart = (getWidth() - getPaddingEnd() - mClearButtonImage.getIntrinsicWidth());
                     boolean isButtonClicked = false;
 
-
-                    if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
-                        if (motionEvent.getX() < clearButtonStartPosition) {
+                    if (getLayoutDirection() != LAYOUT_DIRECTION_RTL) {
+                        if (motionEvent.getX() > mClearButtonStart) {
                             isButtonClicked = true;
                         }
-                    }
-                    else {
-                        if (motionEvent.getX() > clearButtonStartPosition) {
+                    } else {
+                        if (motionEvent.getX() < mClearButtonStart) {
                             isButtonClicked = true;
                         }
                     }
